@@ -40,8 +40,11 @@
 
 	Function.prototype.bind = function(){
 		var self = this, // 保存原函数
+		// get this context
 		context = [].shift.call( arguments ), // 需要绑定的this 上下文
+		// clone array
 		args = [].slice.call( arguments ); // 剩余的参数转成数组
+
 		return function(){ // 返回一个新的函数
 			return self.apply( context, [].concat.call( args, [].slice.call( arguments ) ) );
 				// 执行新的函数的时候，会把之前传入的context 当作新函数体内的this
@@ -78,7 +81,7 @@
 	var b = new B( 'sven' );
 	console.log( b.getName() ); // 输出： 'sven'
 
-	//通常会借用Array.prototype.push：
+	//通常会借用 Array.prototype.push：
 	(function(){
 		Array.prototype.push.call( arguments, 3 );
 		console.log ( arguments ); // 输出[1,2,3]
@@ -96,5 +99,6 @@
 		return this.length;
 	};
 
+	// 数组的方法返回值比较特殊， 康斯非卖  concat slice filter map
 
 </script>

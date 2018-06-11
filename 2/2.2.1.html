@@ -1,6 +1,12 @@
 ﻿<script type="text/javascript">
-	
+/* 
+	当使用 call 或者 apply 的时候，如果我们传入的第一个参数为 null ，
+	函数体内的 this 会指 向默认的宿主对象，在浏览器中则是 window ：
+*/
+
+
 	//apply 方法把这个集合中的元素作为参数传递给被调用的函数：
+	
 	var func = function( a, b, c ){
 		alert ( [ a, b, c ] ); // 输出 [ 1, 2, 3 ]
 	};

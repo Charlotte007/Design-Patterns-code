@@ -35,7 +35,7 @@
 		}
 	};
 
-	var f = func();
+	var f = func(); // 这一步；说明了闭包；函数嵌套函数；内部函数可以访问外部函数的变量就是闭包 (重点就是：内部函数)
 
 	f(); // 输出：2
 	f(); // 输出：3
@@ -43,10 +43,12 @@
 	f(); // 输出：5
 
 	var Type = {};
-
+	//  for的简介写法见识了；type是每次都要重新赋值的；[ ！小技能get]
 	for ( var i = 0, type; type = [ 'String', 'Array', 'Number' ][ i++ ]; ){
 		(function( type ){
+			// 这个也是 扩展函数方法的小技巧 ['is' +var] 
 			Type[ 'is' + type ] = function( obj ){
+				// 都是从Object继承的  tostring 方法了； 突然想到，如何区分 数组和 objec的类型了
 				return Object.prototype.toString.call( obj ) === '[object '+ type +']';
 			}
 		})( type )
@@ -64,7 +66,7 @@
 		return a;
 	};
 
-	//我们可以加入缓存机制来提高这个函数的性能：
+	//我们可以加入缓存机制来提高这个函数的性能：【又是骚操作】
 	var cache = {};
 	var mult = function(){
 		var args = Array.prototype.join.call( arguments, ',' );
